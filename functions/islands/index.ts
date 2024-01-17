@@ -9,7 +9,7 @@ export async function onRequest() {
       base: "/islands/",
       title: "Islands test",
       content:
-        '<island on:visible import="/islands/hello"></island><script type="module" src="/islands/runtime"></script>',
+        '<island on:visible:load="/islands/hello"></island><script type="module" src="/islands/runtime"></script>',
     }),
     {
       status: 200,
