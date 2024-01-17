@@ -6,9 +6,13 @@ This repository contains a simple benchmark of islands architecture against SSR 
 
 0. `nvm use` to use the right version of Node
 1. `npm install` to install dependencies
-2. `npm start` to run the server
+2. `npm start` to run the edge test server
 
 After that you should be able to access `localhost:3000` and paths (`/islands` and `/ssr`) behind it.
+
+## Individual server
+
+Make sure you have a recent version of [Deno](https://deno.com/) installed and then run `npm run start:ssr`. The server uses port 8080 by default and to customize, set `PORT` (i.e., `PORT=1234 npm run start:ssr`).
 
 ## TypeScript
 
@@ -18,7 +22,7 @@ TypeScript is used for the edge code (CloudFlare workers) and the setup has been
 
 To generate Lighthouse results, run the following:
 
-```
+```bash
 npm run playwright
 ```
 
@@ -28,7 +32,7 @@ You can see the summaries in the output (FCP in ms) as a CSV to copy to `main.te
 
 Autocannon (req/s) tests are behind `autocannon:` namespace. Example.
 
-```
+```bash
 npm run autocannon:islands-on-edge
 npm run autocannon:ssr-on-edge
 npm run autocannon:ssr
