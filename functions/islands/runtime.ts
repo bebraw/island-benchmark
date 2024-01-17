@@ -10,6 +10,9 @@ export function onRequest() {
   });
 }
 
+// This could be optimized further by minifying and gzipping but in the context
+// of this benchmark it does not make a big difference as island runtime has
+// a small fixed cost.
 const runtimeCode = `
 console.log('hello from an island runtime');
 
