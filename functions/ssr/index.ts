@@ -7,7 +7,7 @@ export async function onRequest() {
 
   // Here all islands are prerendered instantly and there's no specific additional logic related to them
   const island = (i: number) =>
-    `<div style="height: 10em; background-color: #${(1000 + i * 10).toString(16)}; margin: 1em; padding: 1em;">
+    `<div style="min-height: 10em; background-color: #${(1000 + i * 10).toString(16)}; margin: 1em; padding: 1em;">
       ${islandTemplate(i.toString())}
     </div>`;
 

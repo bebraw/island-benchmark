@@ -1,3 +1,5 @@
+import { loremIpsum } from "lorem-ipsum";
+
 function baseTemplate({
   base,
   title,
@@ -25,7 +27,7 @@ function baseTemplate({
 }
 
 function islandTemplate(value: string) {
-  return `<div>Hello from the island of ${value}s!</div>`;
+  return `<div>Hello from the island of ${value}s! ${loremIpsum({ count: 10 })}</div>`;
 }
 
 export { baseTemplate, islandTemplate };

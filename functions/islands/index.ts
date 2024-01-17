@@ -10,7 +10,7 @@ export async function onRequest() {
   // would be better to extract the styles to a stylesheet and go through
   // classes instead.
   const island = (i: number) =>
-    `<div style="height: 10em; background-color: #${(1000 + i * 10).toString(16)}; margin: 1em; padding: 1em;"
+    `<div style="min-height: 10em; background-color: #${(1000 + i * 10).toString(16)}; margin: 1em; padding: 1em;"
       data-island
       on:visible:load="/islands/hello?value=${i}">
     </div>`;
