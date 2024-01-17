@@ -22,6 +22,7 @@
     "wrangler": "^3.22.5"
   },
   "dependencies": {
-    "lorem-ipsum": "^2.0.8"
+    "lorem-ipsum": "^2.0.8",
+    "pure-rand": "^6.0.4"
   }
 }

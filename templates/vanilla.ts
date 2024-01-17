@@ -1,4 +1,5 @@
 import { loremIpsum } from "lorem-ipsum";
+import prand from "pure-rand";
 
 function baseTemplate({
   base,
@@ -27,7 +28,10 @@ function baseTemplate({
 }
 
 function islandTemplate(value: string) {
-  return `<div>Hello from the island of ${value}s! ${loremIpsum({ count: 10 })}</div>`;
+  const rng = prand.xoroshiro128plus(Number(value));
+  const random = () => prand.unsafeUniformIntDistribution(0, 1000, rng) / 1000;
+
+  return `<div>Hello from the island of ${value}s! ${loremIpsum({ count: 10, random })}</div>`;
 }
 
 export { baseTemplate, islandTemplate };
