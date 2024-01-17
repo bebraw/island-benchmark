@@ -1,6 +1,6 @@
-export async function onRequest() {
+export function onRequest() {
   // Wait 100ms to simulate load
-  await new Promise((r) => setTimeout(r, 100));
+  // await new Promise((r) => setTimeout(r, 100));
 
   return new Response(runtimeCode, {
     status: 200,
@@ -13,7 +13,7 @@ export async function onRequest() {
 const runtimeCode = `
 console.log('hello from an island runtime');
 
-const islands = document.getElementsByTagName("island");
+const islands = document.querySelectorAll("[data-island]");
 for (let i = 0; i < islands.length; i++) {
   const island = islands[i];
   const markupToLoad = island.getAttribute('on:visible:load');
@@ -32,6 +32,8 @@ for (let i = 0; i < islands.length; i++) {
         if (!intersected) {
           return;
         }
+
+        console.log('intersected', island);
 
         observer.unobserve(island);
 
