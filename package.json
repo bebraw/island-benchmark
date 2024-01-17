@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "wrangler pages dev ."
+    "start": "wrangler pages dev .",
+    "start:ssr": "deno run --allow-env --allow-net ./ssr-server.ts"
   },
   "keywords": [],
   "author": "Juho Vepsäläinen",
