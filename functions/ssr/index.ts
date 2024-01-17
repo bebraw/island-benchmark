@@ -7,7 +7,7 @@ export async function onRequest() {
   return new Response(
     await baseTemplate({
       base: "/ssr/",
-      title: "SSR",
+      title: "SSR test",
       content: "SSR test",
     }),
     {
