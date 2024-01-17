@@ -8,5 +8,17 @@
   },
   "keywords": [],
   "author": "Juho Vepsäläinen",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "@playwright/test": "^1.41.0",
+    "autocannon": "^7.14.0",
+    "lighthouse": "^11.4.0",
+    "playwright": "^1.41.0",
+    "playwright-lighthouse": "^4.0.0",
+    "prettier": "^3.2.3",
+    "tslib": "^2.6.2",
+    "typescript": "^5.3.3",
+    "wrangler": "^3.22.5"
+  }
 }
