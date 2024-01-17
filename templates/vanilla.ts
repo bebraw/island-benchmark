@@ -24,4 +24,8 @@ function baseTemplate({
   </html>`;
 }
 
-export { baseTemplate };
+function islandTemplate(value: string) {
+  return `<div>Hello from the island of ${value}s!</div>`;
+}
+
+export { baseTemplate, islandTemplate };

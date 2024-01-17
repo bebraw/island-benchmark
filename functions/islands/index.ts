@@ -1,4 +1,5 @@
 import { baseTemplate } from "../../templates/vanilla.ts";
+import { repeat } from "../../utils.ts";
 
 export async function onRequest() {
   // Wait 100ms to simulate load
@@ -29,8 +30,4 @@ export async function onRequest() {
       },
     }
   );
-}
-
-function repeat(s: (i: number) => string, amount: number) {
-  return Array.from(new Array(amount), (_, i) => s(i));
 }
