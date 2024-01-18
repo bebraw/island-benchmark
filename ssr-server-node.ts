@@ -10,7 +10,8 @@ http
     const res = await onRequest();
     const text = await res.text();
 
-    // Alternative way to get headers from a Response
+    // Alternative way to get headers from a Response.
+    // For some reason this doesn't work on cyclic.sh.
     // JSON.stringify(Object.fromEntries(res.headers));
     response.writeHead(res.status, {
       "content-type": "text/html;charset=UTF-8",
