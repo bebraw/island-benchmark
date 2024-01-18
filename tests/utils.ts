@@ -97,6 +97,9 @@ function printTable() {
     ["SSR", "ssr"],
   ];
 
+  console.log(
+    "\nFCP (first run, median, average), SRT (first run, median, average)"
+  );
   console.log(rows.map((row) => getRow(row[0], row[1])).join(""));
 }
 
