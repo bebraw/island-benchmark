@@ -10,10 +10,11 @@ http
     const res = await onRequest();
     const text = await res.text();
 
-    response.writeHead(
-      res.status,
-      JSON.stringify(Object.fromEntries(res.headers))
-    );
+    // Alternative way to get headers from a Response
+    // JSON.stringify(Object.fromEntries(res.headers));
+    response.writeHead(res.status, {
+      "content-type": "text/html;charset=UTF-8",
+    });
     response.end(text);
   })
   .listen(port);
