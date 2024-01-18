@@ -1,11 +1,13 @@
 {
   "name": "island-benchmark",
+  "type": "module",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "wrangler pages dev .",
-    "start:ssr": "deno run --allow-env --allow-net ./ssr-server.ts"
+    "start:cf": "wrangler pages dev .",
+    "start:deno": "deno run --allow-env --allow-net ./ssr-server-deno.ts",
+    "start": "node --loader ts-node/esm ./ssr-server-node.ts"
   },
   "keywords": [],
   "author": "Juho Vepsäläinen",
@@ -13,6 +15,7 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20231218.0",
     "@playwright/test": "^1.41.0",
+    "@types/node": "^20.11.5",
     "autocannon": "^7.14.0",
     "lighthouse": "^11.4.0",
     "playwright": "^1.41.0",
@@ -24,6 +27,7 @@
   },
   "dependencies": {
     "lorem-ipsum": "^2.0.8",
-    "pure-rand": "^6.0.4"
+    "pure-rand": "^6.0.4",
+    "ts-node": "^10.9.2"
   }
 }

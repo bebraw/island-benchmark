@@ -6,7 +6,7 @@ This repository contains a simple benchmark of islands architecture against SSR 
 
 0. `nvm use` to use the right version of Node
 1. `npm install` to install dependencies
-2. `npm start` to run the edge test server
+2. `npm run start:cf` to run the edge test server
 
 After that you should be able to access `localhost:3000` and paths (`/islands` and `/ssr`) behind it.
 
@@ -14,7 +14,11 @@ Note that the edge server is automatically deployed to `https://island-benchmark
 
 ## Individual server
 
-Make sure you have a recent version of [Deno](https://deno.com/) installed and then run `npm run start:ssr`. The server uses port 8080 by default and to customize, set `PORT` (i.e., `PORT=1234 npm run start:ssr`).
+Make sure you have a recent version of [Deno](https://deno.com/) installed and then run `npm run start:deno`. The server uses port 8080 by default and to customize, set `PORT` (i.e., `PORT=1234 npm run start:ssr`).
+
+There is also a Node version available at `npm start`.
+
+The individual server version is automatically deployed to `https://island-benchmark.cyclic.app/`.
 
 ## TypeScript
 
