@@ -13,9 +13,7 @@ const thresholds = {
 };
 
 testSuites("ssr", "https://island-benchmark.cyclic.app", [""]);
-
-// TODO: Set up
-// testSuites("edge", "https://island-benchmark.pages.dev/", ["islands", "ssr"]);
+testSuites("edge", "https://island-benchmark.pages.dev", ["islands", "ssr"]);
 test.afterAll(() => {
   printCSV();
   printTable();
