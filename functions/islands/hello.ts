@@ -1,4 +1,5 @@
 import { islandTemplate } from "../../templates/vanilla.ts";
+import { escapeHtml } from "../../utils.ts";
 
 export async function onRequest({ request }: { request: Request }) {
   const { searchParams } = new URL(request.url);
@@ -11,8 +12,7 @@ export async function onRequest({ request }: { request: Request }) {
   // Wait 100ms to simulate load
   await new Promise((r) => setTimeout(r, 100));
 
-  // Note that this isn't XSS safe so take care!
-  return new Response(islandTemplate(value), {
+  return new Response(islandTemplate(escapeHtml(value)), {
     status: 200,
     headers: {
       "content-type": "text/html;charset=UTF-8",
