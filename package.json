@@ -8,7 +8,8 @@
     "start:cf": "wrangler pages dev .",
     "start:deno": "deno run --allow-env --allow-net ./ssr-server-deno.ts",
     "start": "node --loader ts-node/esm ./ssr-server-node.ts",
-    "playwright": "playwright test"
+    "playwright": "playwright test",
+    "autocannon": "node ./run-autocannon.js"
   },
   "keywords": [],
   "author": "Juho Vepsäläinen",

@@ -36,12 +36,4 @@ You can see the summaries in the output (FCP in ms) as a CSV to copy to `main.te
 
 ## Autocannon tests
 
-Autocannon (req/s) tests are behind `autocannon:` namespace. Example.
-
-```bash
-npm run autocannon:islands-on-edge
-npm run autocannon:ssr-on-edge
-npm run autocannon:ssr
-```
-
-To run the whole suite that emits a CSV suitable for `main.tex`, use `npm run autocannon` and copy the output. Since each test takes about 30 seconds, expect running the whole suite to take roughly a minute and half.
+Autocannon (req/s) tests are behind `npm run autocannon`. namespace. It emits a CSV that you should copy to LaTeX.
