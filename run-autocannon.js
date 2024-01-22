@@ -3,7 +3,7 @@ import autocannon from "autocannon";
 const targets = [
   "https://island-benchmark.pages.dev/ssr/",
   "https://island-benchmark.pages.dev/islands/",
-  "https://island-benchmark.cyclic.app/",
+  "https://island-benchmark.cyclic.app/ssr/",
 ];
 
 async function main(targets, duration) {
