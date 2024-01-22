@@ -3,7 +3,7 @@ import { repeat } from "../../utils.ts";
 
 export async function onRequest() {
   // Wait 100ms to simulate load
-  await new Promise((r) => setTimeout(r, 100));
+  // await new Promise((r) => setTimeout(r, 100));
 
   // Here all islands are prerendered instantly and there's no specific additional logic related to them
   const island = (i: number) =>

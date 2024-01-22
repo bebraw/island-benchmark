@@ -1,9 +1,9 @@
 import { baseTemplate } from "../../templates/vanilla.ts";
 import { repeat } from "../../utils.ts";
 
-export async function onRequest() {
+export function onRequest() {
   // Wait 100ms to simulate load
-  await new Promise((r) => setTimeout(r, 100));
+  // await new Promise((r) => setTimeout(r, 100));
 
   // Without predefined styling, on:visible does not make much sense.
   // Note that the way we define styling is slightly inefficient as it
