@@ -12,7 +12,7 @@ const thresholds = {
   pwa: 10,
 };
 
-testSuites("ssr", "https://island-benchmark.cyclic.app", ["ssr"]);
+testSuites("server", "https://island-benchmark.cyclic.app", ["islands", "ssr"]);
 testSuites("edge", "https://island-benchmark.pages.dev", ["islands", "ssr"]);
 test.afterAll(() => {
   printCSV();

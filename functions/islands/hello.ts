@@ -2,7 +2,10 @@ import { islandTemplate } from "../../templates/vanilla.ts";
 import { escapeHtml } from "../../utils.ts";
 
 export async function onRequest({ request }: { request: Request }) {
-  const { searchParams } = new URL(request.url);
+  const { searchParams } = new URL(
+    // Adapt for local Node.js as there parsing fails without http:// prefix
+    request.url.startsWith("http") ? request.url : "http://" + request.url
+  );
   const value = searchParams.get("value");
 
   if (!value) {

@@ -1,6 +1,5 @@
 import fs from "fs";
 import { glob } from "glob";
-// const { range } = require("../utils");
 
 function getReportsConfiguration(prefix: string) {
   return {
@@ -23,10 +22,11 @@ function printCSV() {
   auditTypes.forEach((auditType) => {
     const edgeSsrFCPs = readAudits("edge-ssr-", auditType);
     const edgeIslandsFCPs = readAudits("edge-islands-", auditType);
-    const ssrFCPs = readAudits("ssr-", auditType);
+    const serverSsrFCPs = readAudits("server-ssr-", auditType);
+    const serverIslandsFCPs = readAudits("server-islands-", auditType);
 
     function pickRow(i: number) {
-      return `${i + 1},${edgeSsrFCPs[i]},${edgeIslandsFCPs[i]},${ssrFCPs[i]}`;
+      return `${i + 1},${edgeSsrFCPs[i]},${edgeIslandsFCPs[i]},${serverSsrFCPs[i]},${serverIslandsFCPs[i]}`;
     }
 
     console.log(`\nAudit type: ${auditType}`);
@@ -50,13 +50,15 @@ function printTable() {
   const calculatedRows = {
     edgeSsr: {},
     edgeIslands: {},
-    ssr: {},
+    serverSsr: {},
+    serverIslands: {},
   };
 
   auditTypes.forEach((auditType) => {
     const edgeSsrValues = readAudits("edge-ssr-", auditType);
     const edgeIslandsValues = readAudits("edge-islands-", auditType);
-    const ssrValues = readAudits("ssr-", auditType);
+    const ssrValues = readAudits("server-ssr-", auditType);
+    const ssrIslandsValues = readAudits("server-islands-", auditType);
 
     calculatedRows.edgeSsr[auditType] = {
       firstRun: edgeSsrValues[0],
@@ -68,10 +70,15 @@ function printTable() {
       median: median(edgeIslandsValues.slice(1)),
       average: average(edgeIslandsValues.slice(1)),
     };
-    calculatedRows.ssr[auditType] = {
+    calculatedRows.serverSsr[auditType] = {
       firstRun: ssrValues[0],
       median: median(ssrValues.slice(1)),
       average: average(ssrValues.slice(1)),
+    };
+    calculatedRows.serverIslands[auditType] = {
+      firstRun: ssrIslandsValues[0],
+      median: median(ssrIslandsValues.slice(1)),
+      average: average(ssrIslandsValues.slice(1)),
     };
   });
 
@@ -94,7 +101,8 @@ function printTable() {
   const rows = [
     ["Edge SSR", "edgeSsr"],
     ["Edge Islands", "edgeIslands"],
-    ["SSR", "ssr"],
+    ["Server SSR", "serverSsr"],
+    ["Server Islands", "serverIslands"],
   ];
 
   console.log(
