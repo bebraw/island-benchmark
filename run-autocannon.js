@@ -4,6 +4,7 @@ const targets = [
   "https://island-benchmark.pages.dev/ssr/",
   "https://island-benchmark.pages.dev/islands/",
   "https://island-benchmark.cyclic.app/ssr/",
+  "https://island-benchmark.cyclic.app/islands/",
 ];
 
 async function main(targets, duration) {
