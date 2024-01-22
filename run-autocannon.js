@@ -16,7 +16,7 @@ async function main(targets, duration) {
     return results.map((result) => result.latency[key]);
   }
 
-  console.log(`a,b,c,d
+  console.log(`a,b,c,d,e
 0.001,${pickRow("p0_001").join(",")}
 0.01,${pickRow("p0_01").join(",")}
 0.1,${pickRow("p0_1").join(",")}
