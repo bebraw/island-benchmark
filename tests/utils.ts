@@ -11,7 +11,7 @@ function getReportsConfiguration(prefix: string) {
   };
 }
 
-function printCSV() {
+function printCSV(amountOfRuns: number) {
   // Check the output JSON files for possible audits
   const auditTypes = [
     "first-contentful-paint",
@@ -32,7 +32,7 @@ function printCSV() {
     console.log(`\nAudit type: ${auditType}`);
     // This output should go to main.tex
     console.log(`a,b,c,d,e,f,g,h,i
-${range(5)
+${range(amountOfRuns)
   .map((i) => pickRow(i))
   .join("\n")}`);
   });

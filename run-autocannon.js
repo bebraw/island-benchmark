@@ -3,8 +3,10 @@ import autocannon from "autocannon";
 const targets = [
   "https://island-benchmark.pages.dev/ssr/",
   "https://island-benchmark.pages.dev/islands/",
-  "https://island-benchmark.cyclic.app/ssr/",
-  "https://island-benchmark.cyclic.app/islands/",
+  "http://194.62.99.82:8080/ssr/",
+  "http://194.62.99.82:8080/islands/",
+  // "https://island-benchmark.cyclic.app/ssr/",
+  // "https://island-benchmark.cyclic.app/islands/",
 ];
 
 async function main(targets, duration) {

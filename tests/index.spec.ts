@@ -14,10 +14,10 @@ const thresholds = {
   pwa: 10,
 };
 
-testSuites("server", "https://island-benchmark.cyclic.app", ["islands", "ssr"]);
+testSuites("server", "http://194.62.99.82:8080", ["islands", "ssr"]);
 testSuites("edge", "https://island-benchmark.pages.dev", ["islands", "ssr"]);
 test.afterAll(() => {
-  printCSV();
+  printCSV(AMOUNT_OF_RUNS);
   printTable();
 });
 
