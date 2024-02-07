@@ -4,6 +4,8 @@ import playwright from "playwright";
 import { getReportsConfiguration, printCSV, printTable } from "./utils.ts";
 import { range } from "../utils.ts";
 
+const AMOUNT_OF_RUNS = 10;
+
 const thresholds = {
   performance: 50,
   accessibility: 50,
@@ -22,7 +24,7 @@ test.afterAll(() => {
 // The idea is to run similar test cases at the same time to avoid
 // weirdness related to connectivity as connection speed may vary.
 function testSuites(type: string, prefix: string, names: string[]) {
-  range(5).forEach((i) =>
+  range(AMOUNT_OF_RUNS).forEach((i) =>
     names.forEach((name) =>
       test(`${prefix}-${name ? name + " " : ""}audit index #${i + 1}`, () =>
         auditIndex(type, prefix, name, i + 1))
