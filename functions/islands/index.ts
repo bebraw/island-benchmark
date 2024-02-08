@@ -1,7 +1,13 @@
 import { baseTemplate } from "../../templates/vanilla.ts";
 import { repeat } from "../../utils.ts";
 
-export function onRequest() {
+export function onRequest({ request }: { request: Request }) {
+  const { searchParams } = new URL(
+    // Adapt for local Node.js as there parsing fails without http:// prefix
+    request.url.startsWith("http") ? request.url : "http://" + request.url
+  );
+  const amount = Number(searchParams.get("amount"));
+
   // Wait 100ms to simulate load
   // await new Promise((r) => setTimeout(r, 100));
 
@@ -20,8 +26,8 @@ export function onRequest() {
     baseTemplate({
       base: "/islands/",
       title: "Islands test",
-      // Render thousand islands and a runtime
-      content: repeat(island, 1000).join("") + runtime,
+      // Render islands and a runtime
+      content: repeat(island, amount).join("") + runtime,
     }),
     {
       status: 200,

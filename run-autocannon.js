@@ -2,11 +2,11 @@ import autocannon from "autocannon";
 
 const targets = [
   "https://island-benchmark.pages.dev/ssr?amount=1000",
-  "https://island-benchmark.pages.dev/islands/",
+  "https://island-benchmark.pages.dev/islands?amount=1000",
   "http://194.62.99.82:8080/ssr?amount=10",
   "http://194.62.99.82:8080/ssr?amount=100",
   "http://194.62.99.82:8080/ssr?amount=1000",
-  "http://194.62.99.82:8080/islands/",
+  "http://194.62.99.82:8080/islands?amount=1000",
   // "https://island-benchmark.cyclic.app/ssr/",
   // "https://island-benchmark.cyclic.app/islands/",
 ];

@@ -21,7 +21,7 @@ function printCSV(amountOfRuns: number) {
 
   auditTypes.forEach((auditType) => {
     const edgeSsrFCPs = readAudits("edge-ssr?amount=1000-", auditType);
-    const edgeIslandsFCPs = readAudits("edge-islands-", auditType);
+    const edgeIslandsFCPs = readAudits("edge-islands?amount=1000-", auditType);
     const serverSsrTenFCPs = readAudits("server-ssr?amount=10-", auditType);
     const serverSsrHundredFCPs = readAudits(
       "server-ssr?amount=100-",
@@ -69,11 +69,17 @@ function printTable() {
 
   auditTypes.forEach((auditType) => {
     const edgeSsrValues = readAudits("edge-ssr?amount=1000-", auditType);
-    const edgeIslandsValues = readAudits("edge-islands-", auditType);
+    const edgeIslandsValues = readAudits(
+      "edge-islands?amount=1000-",
+      auditType
+    );
     const ssrTenValues = readAudits("server-ssr?amount=10-", auditType);
     const ssrHundredValues = readAudits("server-ssr?amount=100-", auditType);
     const ssrThousandValues = readAudits("server-ssr?amount=1000-", auditType);
-    const ssrIslandsValues = readAudits("server-islands-", auditType);
+    const ssrIslandsValues = readAudits(
+      "server-islands?amount=1000-",
+      auditType
+    );
 
     calculatedRows.edgeSsr[auditType] = {
       firstRun: edgeSsrValues[0],

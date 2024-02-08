@@ -23,9 +23,9 @@ router.get("/ssr/", async (request, response) => {
   });
   response.end(text);
 });
-router.get("/islands/", async (_, response) => {
+router.get("/islands/", async (request, response) => {
   // Convert a Response object to something Node can understand
-  const res = await islandsOnRequest();
+  const res = await islandsOnRequest({ request });
   const text = await res.text();
 
   response.writeHead(res.status, {

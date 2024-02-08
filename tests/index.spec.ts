@@ -15,13 +15,13 @@ const thresholds = {
 };
 
 testSuites("server", "http://194.62.99.82:8080", [
-  "islands",
+  "islands?amount=1000",
   "ssr?amount=10",
   "ssr?amount=100",
   "ssr?amount=1000",
 ]);
 testSuites("edge", "https://island-benchmark.pages.dev", [
-  "islands",
+  "islands?amount=1000",
   "ssr?amount=1000",
 ]);
 test.afterAll(() => {
