@@ -1,7 +1,13 @@
 import { baseTemplate, islandTemplate } from "../../templates/vanilla.ts";
 import { repeat } from "../../utils.ts";
 
-export async function onRequest() {
+export async function onRequest({ request }: { request: Request }) {
+  const { searchParams } = new URL(
+    // Adapt for local Node.js as there parsing fails without http:// prefix
+    request.url.startsWith("http") ? request.url : "http://" + request.url
+  );
+  const amount = Number(searchParams.get("amount"));
+
   // Wait 100ms to simulate load
   // await new Promise((r) => setTimeout(r, 100));
 
@@ -15,7 +21,7 @@ export async function onRequest() {
     await baseTemplate({
       base: "/ssr/",
       title: "SSR test",
-      content: repeat(island, 1000).join(""),
+      content: repeat(island, amount).join(""),
     }),
     {
       status: 200,

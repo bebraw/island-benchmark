@@ -20,18 +20,26 @@ function printCSV(amountOfRuns: number) {
   ];
 
   auditTypes.forEach((auditType) => {
-    const edgeSsrFCPs = readAudits("edge-ssr-", auditType);
+    const edgeSsrFCPs = readAudits("edge-ssr?amount=1000-", auditType);
     const edgeIslandsFCPs = readAudits("edge-islands-", auditType);
-    const serverSsrFCPs = readAudits("server-ssr-", auditType);
+    const serverSsrTenFCPs = readAudits("server-ssr?amount=10-", auditType);
+    const serverSsrHundredFCPs = readAudits(
+      "server-ssr?amount=100-",
+      auditType
+    );
+    const serverSsrThousandFCPs = readAudits(
+      "server-ssr?amount=1000-",
+      auditType
+    );
     const serverIslandsFCPs = readAudits("server-islands-", auditType);
 
     function pickRow(i: number) {
-      return `${i + 1},${edgeSsrFCPs[i]},${edgeIslandsFCPs[i]},${serverSsrFCPs[i]},${serverIslandsFCPs[i]}`;
+      return `${i + 1},${edgeSsrFCPs[i]},${edgeIslandsFCPs[i]},${serverSsrTenFCPs[i]},${serverSsrHundredFCPs[i]},${serverSsrThousandFCPs[i]},${serverIslandsFCPs[i]}`;
     }
 
     console.log(`\nAudit type: ${auditType}`);
     // This output should go to main.tex
-    console.log(`a,b,c,d,e,f,g,h,i
+    console.log(`a,b,c,d,e,f,g,h,i,j,k
 ${range(amountOfRuns)
   .map((i) => pickRow(i))
   .join("\n")}`);
@@ -47,17 +55,24 @@ function printTable() {
     // "interactive",
     "server-response-time",
   ];
-  const calculatedRows = {
-    edgeSsr: {},
-    edgeIslands: {},
-    serverSsr: {},
-    serverIslands: {},
+  const calculatedRows: Record<
+    string,
+    { firstRun: number; median: number; average: number } | null
+  > = {
+    edgeSsr: null,
+    edgeIslands: null,
+    serverTenSsr: null,
+    serverHundredSsr: null,
+    serverThousandSsr: null,
+    serverIslands: null,
   };
 
   auditTypes.forEach((auditType) => {
-    const edgeSsrValues = readAudits("edge-ssr-", auditType);
+    const edgeSsrValues = readAudits("edge-ssr?amount=1000-", auditType);
     const edgeIslandsValues = readAudits("edge-islands-", auditType);
-    const ssrValues = readAudits("server-ssr-", auditType);
+    const ssrTenValues = readAudits("server-ssr?amount=10-", auditType);
+    const ssrHundredValues = readAudits("server-ssr?amount=100-", auditType);
+    const ssrThousandValues = readAudits("server-ssr?amount=1000-", auditType);
     const ssrIslandsValues = readAudits("server-islands-", auditType);
 
     calculatedRows.edgeSsr[auditType] = {
@@ -70,10 +85,20 @@ function printTable() {
       median: median(edgeIslandsValues.slice(1)),
       average: average(edgeIslandsValues.slice(1)),
     };
-    calculatedRows.serverSsr[auditType] = {
-      firstRun: ssrValues[0],
-      median: median(ssrValues.slice(1)),
-      average: average(ssrValues.slice(1)),
+    calculatedRows.serverTenSsr[auditType] = {
+      firstRun: ssrTenValues[0],
+      median: median(ssrTenValues.slice(1)),
+      average: average(ssrTenValues.slice(1)),
+    };
+    calculatedRows.serverHundredSsr[auditType] = {
+      firstRun: ssrHundredValues[0],
+      median: median(ssrHundredValues.slice(1)),
+      average: average(ssrHundredValues.slice(1)),
+    };
+    calculatedRows.serverThousandSsr[auditType] = {
+      firstRun: ssrThousandValues[0],
+      median: median(ssrThousandValues.slice(1)),
+      average: average(ssrThousandValues.slice(1)),
     };
     calculatedRows.serverIslands[auditType] = {
       firstRun: ssrIslandsValues[0],
@@ -99,9 +124,11 @@ function printTable() {
   }
 
   const rows = [
-    ["Edge SSR", "edgeSsr"],
+    ["Edge SSR (1000)", "edgeSsr"],
     ["Edge Islands", "edgeIslands"],
-    ["Server SSR", "serverSsr"],
+    ["Server SSR (10)", "serverTenSsr"],
+    ["Server SSR (100)", "serverHundredSsr"],
+    ["Server SSR (1000)", "serverThousandSsr"],
     ["Server Islands", "serverIslands"],
   ];
 

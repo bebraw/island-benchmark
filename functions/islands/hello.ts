@@ -13,7 +13,7 @@ export async function onRequest({ request }: { request: Request }) {
   }
 
   // Wait 100ms to simulate load
-  await new Promise((r) => setTimeout(r, 100));
+  // await new Promise((r) => setTimeout(r, 100));
 
   return new Response(islandTemplate(escapeHtml(value)), {
     status: 200,

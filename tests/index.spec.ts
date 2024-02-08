@@ -14,8 +14,16 @@ const thresholds = {
   pwa: 10,
 };
 
-testSuites("server", "http://194.62.99.82:8080", ["islands", "ssr"]);
-testSuites("edge", "https://island-benchmark.pages.dev", ["islands", "ssr"]);
+testSuites("server", "http://194.62.99.82:8080", [
+  "islands",
+  "ssr?amount=10",
+  "ssr?amount=100",
+  "ssr?amount=1000",
+]);
+testSuites("edge", "https://island-benchmark.pages.dev", [
+  "islands",
+  "ssr?amount=1000",
+]);
 test.afterAll(() => {
   printCSV(AMOUNT_OF_RUNS);
   printTable();

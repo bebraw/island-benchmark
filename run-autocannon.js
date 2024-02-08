@@ -1,9 +1,11 @@
 import autocannon from "autocannon";
 
 const targets = [
-  "https://island-benchmark.pages.dev/ssr/",
+  "https://island-benchmark.pages.dev/ssr?amount=1000",
   "https://island-benchmark.pages.dev/islands/",
-  "http://194.62.99.82:8080/ssr/",
+  "http://194.62.99.82:8080/ssr?amount=10",
+  "http://194.62.99.82:8080/ssr?amount=100",
+  "http://194.62.99.82:8080/ssr?amount=1000",
   "http://194.62.99.82:8080/islands/",
   // "https://island-benchmark.cyclic.app/ssr/",
   // "https://island-benchmark.cyclic.app/islands/",
@@ -18,7 +20,7 @@ async function main(targets, duration) {
     return results.map((result) => result.latency[key]);
   }
 
-  console.log(`a,b,c,d,e
+  console.log(`a,b,c,d,e,f,g
 0.001,${pickRow("p0_001").join(",")}
 0.01,${pickRow("p0_01").join(",")}
 0.1,${pickRow("p0_1").join(",")}

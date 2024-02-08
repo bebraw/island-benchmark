@@ -10,9 +10,9 @@ import { onRequest as runtimeOnRequest } from "./functions/islands/runtime.ts";
 const port = process.env["PORT"] || 8080;
 
 const router = Router();
-router.get("/ssr/", async (_, response) => {
+router.get("/ssr/", async (request, response) => {
   // Convert a Response object to something Node can understand
-  const res = await ssrOnRequest();
+  const res = await ssrOnRequest({ request });
   const text = await res.text();
 
   // Alternative way to get headers from a Response.
