@@ -57,14 +57,14 @@ function printTable() {
   ];
   const calculatedRows: Record<
     string,
-    { firstRun: number; median: number; average: number } | null
+    { firstRun: number; median: number; average: number }
   > = {
-    edgeSsr: null,
-    edgeIslands: null,
-    serverTenSsr: null,
-    serverHundredSsr: null,
-    serverThousandSsr: null,
-    serverIslands: null,
+    edgeSsr: {},
+    edgeIslands: {},
+    serverTenSsr: {},
+    serverHundredSsr: {},
+    serverThousandSsr: {},
+    serverIslands: {},
   };
 
   auditTypes.forEach((auditType) => {
