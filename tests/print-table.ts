@@ -40,41 +40,57 @@ function printTable() {
       p75: p75(edgeSsrValues),
       median: median(edgeSsrValues),
       average: average(edgeSsrValues),
+      min: min(edgeSsrValues),
+      max: max(edgeSsrValues),
     };
     calculatedRows.edgeIslands[auditType] = {
       p25: p25(edgeIslandsValues),
       p75: p75(edgeIslandsValues),
       median: median(edgeIslandsValues),
       average: average(edgeIslandsValues),
+      min: min(edgeIslandsValues),
+      max: max(edgeIslandsValues),
     };
     calculatedRows.serverTenSsr[auditType] = {
       p25: p25(ssrTenValues),
       p75: p75(ssrTenValues),
       median: median(ssrTenValues),
       average: average(ssrTenValues),
+      min: min(ssrTenValues),
+      max: max(ssrTenValues),
     };
     calculatedRows.serverHundredSsr[auditType] = {
       p25: p25(ssrHundredValues),
       p75: p75(ssrHundredValues),
       median: median(ssrHundredValues),
       average: average(ssrHundredValues),
+      min: min(ssrHundredValues),
+      max: max(ssrHundredValues),
     };
     calculatedRows.serverThousandSsr[auditType] = {
       p25: p25(ssrThousandValues),
       p75: p75(ssrThousandValues),
       median: median(ssrThousandValues),
       average: average(ssrThousandValues),
+      min: min(ssrThousandValues),
+      max: max(ssrThousandValues),
     };
     calculatedRows.serverIslands[auditType] = {
       p25: p25(ssrIslandsValues),
       p75: p75(ssrIslandsValues),
       median: median(ssrIslandsValues),
       average: average(ssrIslandsValues),
+      min: min(ssrIslandsValues),
+      max: max(ssrIslandsValues),
     };
   });
 
   function getRow(name: string, property: string) {
     return `${name} & ${Math.round(
+      calculatedRows[property]["first-contentful-paint"].min
+    )} & ${Math.round(
+      calculatedRows[property]["first-contentful-paint"].max
+    )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].p25
     )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].p75
@@ -82,6 +98,10 @@ function printTable() {
       calculatedRows[property]["first-contentful-paint"].median
     )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].average
+    )} & ${Math.round(
+      calculatedRows[property]["server-response-time"].min
+    )} & ${Math.round(
+      calculatedRows[property]["server-response-time"].max
     )} & ${Math.round(
       calculatedRows[property]["server-response-time"].p25
     )} & ${Math.round(
@@ -103,9 +123,17 @@ function printTable() {
   ];
 
   console.log(
-    "\nFCP (p25, p75, median, average), SRT (first p25, p75, median, average)"
+    "\nFCP (min, max, p25, p75, median, average), SRT (min, max, p25, p75, median, average)"
   );
   console.log(rows.map((row) => getRow(row[0], row[1])).join(""));
+}
+
+function min(values: number[]) {
+  return values.toSorted((a, b) => a - b).at(0);
+}
+
+function max(values: number[]) {
+  return values.toSorted((a, b) => a - b).at(-1);
 }
 
 function p25(values: number[]) {
