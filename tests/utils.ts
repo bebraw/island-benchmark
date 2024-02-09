@@ -81,28 +81,39 @@ function printTable() {
       auditType
     );
 
-    // TODO: Calculate p25 and p75
     calculatedRows.edgeSsr[auditType] = {
+      p25: p25(edgeSsrValues),
+      p75: p75(edgeSsrValues),
       median: median(edgeSsrValues),
       average: average(edgeSsrValues),
     };
     calculatedRows.edgeIslands[auditType] = {
+      p25: p25(edgeIslandsValues),
+      p75: p75(edgeIslandsValues),
       median: median(edgeIslandsValues),
       average: average(edgeIslandsValues),
     };
     calculatedRows.serverTenSsr[auditType] = {
+      p25: p25(ssrTenValues),
+      p75: p75(ssrTenValues),
       median: median(ssrTenValues),
       average: average(ssrTenValues),
     };
     calculatedRows.serverHundredSsr[auditType] = {
+      p25: p25(ssrHundredValues),
+      p75: p75(ssrHundredValues),
       median: median(ssrHundredValues),
       average: average(ssrHundredValues),
     };
     calculatedRows.serverThousandSsr[auditType] = {
+      p25: p25(ssrThousandValues),
+      p75: p75(ssrThousandValues),
       median: median(ssrThousandValues),
       average: average(ssrThousandValues),
     };
     calculatedRows.serverIslands[auditType] = {
+      p25: p25(ssrIslandsValues),
+      p75: p75(ssrIslandsValues),
       median: median(ssrIslandsValues),
       average: average(ssrIslandsValues),
     };
@@ -110,9 +121,17 @@ function printTable() {
 
   function getRow(name: string, property: string) {
     return `${name} & ${Math.round(
+      calculatedRows[property]["first-contentful-paint"].p25
+    )} & ${Math.round(
+      calculatedRows[property]["first-contentful-paint"].p75
+    )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].median
     )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].average
+    )} & ${Math.round(
+      calculatedRows[property]["server-response-time"].p25
+    )} & ${Math.round(
+      calculatedRows[property]["server-response-time"].p75
     )} & ${Math.round(
       calculatedRows[property]["server-response-time"].median
     )} & ${Math.round(
@@ -130,9 +149,19 @@ function printTable() {
   ];
 
   console.log(
-    "\nFCP (first run, median, average), SRT (first run, median, average)"
+    "\nFCP (p25, p75, median, average), SRT (first p25, p75, median, average)"
   );
   console.log(rows.map((row) => getRow(row[0], row[1])).join(""));
+}
+
+// The assumption is that the values are already sorted
+function p25(values: number[]) {
+  return values[Math.floor(values.length * 0.25)];
+}
+
+// The assumption is that the values are already sorted
+function p75(values: number[]) {
+  return values[Math.floor(values.length * 0.75)];
 }
 
 function median(values: number[]) {
