@@ -108,14 +108,12 @@ function printTable() {
   console.log(rows.map((row) => getRow(row[0], row[1])).join(""));
 }
 
-// The assumption is that the values are already sorted
 function p25(values: number[]) {
-  return values[Math.floor(values.length * 0.25)];
+  return values.toSorted((a, b) => a - b)[Math.floor(values.length * 0.25)];
 }
 
-// The assumption is that the values are already sorted
 function p75(values: number[]) {
-  return values[Math.floor(values.length * 0.75)];
+  return values.toSorted((a, b) => a - b)[Math.floor(values.length * 0.75)];
 }
 
 function median(values: number[]) {
