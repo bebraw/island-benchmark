@@ -8,6 +8,7 @@
     "start:cf": "wrangler pages dev .",
     "start:deno": "deno run --allow-env --allow-net ./ssr-server-deno.ts",
     "start": "node --loader ts-node/esm ./ssr-server-node.ts",
+    "print-box-plot": "node --loader ts-node/esm ./print-box-plot.ts",
     "print-table": "node --loader ts-node/esm ./print-table.ts",
     "playwright": "playwright test",
     "autocannon": "node ./run-autocannon.js"

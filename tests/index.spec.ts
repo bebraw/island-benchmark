@@ -2,6 +2,7 @@ import { test } from "@playwright/test";
 import { playAudit } from "playwright-lighthouse";
 import playwright from "playwright";
 import { printCSV } from "./print-csv.ts";
+import { printBoxPlot } from "./print-box-plot.ts";
 import { printTable } from "./print-table.ts";
 import { range } from "../utils.ts";
 
@@ -28,6 +29,7 @@ testSuites("edge", "https://island-benchmark.pages.dev", [
 test.afterAll(() => {
   printCSV(AMOUNT_OF_RUNS);
   printTable();
+  printBoxPlot();
 });
 
 // The idea is to run similar test cases at the same time to avoid
