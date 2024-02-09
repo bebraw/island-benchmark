@@ -85,36 +85,6 @@ function printBoxPlot() {
     };
   });
 
-  /*
-  function getRow(name: string, property: string) {
-    return `${name} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].min
-    )} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].max
-    )} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].p25
-    )} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].p75
-    )} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].median
-    )} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].average
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].min
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].max
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].p25
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].p75
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].median
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].average
-    )} \\\\\n`;
-  }
-  */
-
   const rows = [
     ["Edge SSR (1000)", "edgeSsr"],
     ["Edge Islands", "edgeIslands"],
@@ -137,7 +107,7 @@ function printBoxPlot() {
     min: number;
     max: number;
   }) => `
-    \addplot+[
+    \\addplot+[
     boxplot prepared={
       median=${median},
       upper quartile=${p75},
@@ -145,15 +115,14 @@ function printBoxPlot() {
       upper whisker=${max},
       lower whisker=${min}
     },
-    ] coordinates {};
-  `;
+    ] coordinates {};`;
 
   console.log(
     "\nFCP (min, max, p25, p75, median, average), SRT (min, max, p25, p75, median, average)"
   );
   console.log(
     rows
-      .map((row) => template(calculatedRows[row[1]]["first-contentful-paint"]))
+      .map((row) => template(calculatedRows[row[1]]["server-response-time"]))
       .join("")
   );
 }
