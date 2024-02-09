@@ -1,7 +1,8 @@
 import { test } from "@playwright/test";
 import { playAudit } from "playwright-lighthouse";
 import playwright from "playwright";
-import { getReportsConfiguration, printCSV, printTable } from "./utils.ts";
+import { printCSV } from "./print-csv.ts";
+import { printTable } from "./print-table.ts";
 import { range } from "../utils.ts";
 
 const AMOUNT_OF_RUNS = 10;
@@ -61,4 +62,14 @@ async function auditIndex(
   });
 
   await browser.close();
+}
+
+function getReportsConfiguration(prefix: string) {
+  return {
+    formats: { json: true, html: true, csv: true },
+    name: prefix + "-audit",
+    directory: "benchmark-output",
+    // Test against mobile to throttle connection
+    formFactor: "mobile",
+  };
 }
