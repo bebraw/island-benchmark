@@ -82,46 +82,36 @@ function printTable() {
     );
 
     calculatedRows.edgeSsr[auditType] = {
-      firstRun: edgeSsrValues[0],
-      median: median(edgeSsrValues.slice(1)),
-      average: average(edgeSsrValues.slice(1)),
+      median: median(edgeSsrValues),
+      average: average(edgeSsrValues),
     };
     calculatedRows.edgeIslands[auditType] = {
-      firstRun: edgeIslandsValues[0],
-      median: median(edgeIslandsValues.slice(1)),
-      average: average(edgeIslandsValues.slice(1)),
+      median: median(edgeIslandsValues),
+      average: average(edgeIslandsValues),
     };
     calculatedRows.serverTenSsr[auditType] = {
-      firstRun: ssrTenValues[0],
-      median: median(ssrTenValues.slice(1)),
-      average: average(ssrTenValues.slice(1)),
+      median: median(ssrTenValues),
+      average: average(ssrTenValues),
     };
     calculatedRows.serverHundredSsr[auditType] = {
-      firstRun: ssrHundredValues[0],
-      median: median(ssrHundredValues.slice(1)),
-      average: average(ssrHundredValues.slice(1)),
+      median: median(ssrHundredValues),
+      average: average(ssrHundredValues),
     };
     calculatedRows.serverThousandSsr[auditType] = {
-      firstRun: ssrThousandValues[0],
-      median: median(ssrThousandValues.slice(1)),
-      average: average(ssrThousandValues.slice(1)),
+      median: median(ssrThousandValues),
+      average: average(ssrThousandValues),
     };
     calculatedRows.serverIslands[auditType] = {
-      firstRun: ssrIslandsValues[0],
-      median: median(ssrIslandsValues.slice(1)),
-      average: average(ssrIslandsValues.slice(1)),
+      median: median(ssrIslandsValues),
+      average: average(ssrIslandsValues),
     };
   });
 
   function getRow(name: string, property: string) {
     return `${name} & ${Math.round(
-      calculatedRows[property]["first-contentful-paint"].firstRun
-    )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].median
     )} & ${Math.round(
       calculatedRows[property]["first-contentful-paint"].average
-    )} & ${Math.round(
-      calculatedRows[property]["server-response-time"].firstRun
     )} & ${Math.round(
       calculatedRows[property]["server-response-time"].median
     )} & ${Math.round(
